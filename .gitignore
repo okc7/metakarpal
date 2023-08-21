@@ -1,0 +1,6 @@
+# Ignore the data folder
+/data
+/env
+
+# Ignore files that start with "cuda-repo"
+cuda-repo*
