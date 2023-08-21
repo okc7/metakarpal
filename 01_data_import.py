@@ -62,7 +62,7 @@ print("Number of test samples:", len(test_data))
 print("Number of total samples:", len(train_data)+len(test_data)+len(valid_data))
 
 # Create a pretrained ResNet-50 model
-base_model = ResNet50(weights='imagenet', include_top=False, input_tensor=Input(shape=(224, 224, 3)))
+base_model = ResNet50(weights='imagenet', include_top=False, input_tensor=Input(shape=(1024, 1024, 3)))
 
 # Add custom layers on top of the base model
 x = base_model.output
@@ -74,7 +74,8 @@ predictions = Dense(1, activation='sigmoid')(x)  # Binary classification, so sig
 model = Model(inputs=base_model.input, outputs=predictions)
 
 # Compile the model
-model.compile(optimizer=Adam(lr=0.0001), loss='binary_crossentropy', metrics=['accuracy'])
+model.compile(optimizer=Adam(learning_rate=0.0001), loss='binary_crossentropy', metrics=['accuracy'])
+
 
 # Prepare data augmentation
 data_augmentation = ImageDataGenerator(
